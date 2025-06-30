@@ -169,10 +169,9 @@ app.post('/api/ai/generate-bio', authenticateToken, async (req, res) => {
 // --- Static file serving (for production build) ---
 if (process.env.NODE_ENV === "production") {
   // Serve frontend build files
-  app.use(express.static(path.join(__dirname, '../frontend/build')));
-  // Serve index.html for any unknown routes (client-side routing support)
+  app.use(express.static(path.join(__dirname, 'frontend')));
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+    res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
   });
 }
 
