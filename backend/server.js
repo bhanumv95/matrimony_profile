@@ -5,7 +5,7 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Razorpay = require('razorpay');
-const { Configuration, OpenAIApi } = require('openai');
+const OpenAI = require('openai');
 const path = require('path');
 
 const app = express();
@@ -22,8 +22,9 @@ const razorpay = new Razorpay({
 // Initialize OpenAI API client
 let openai;
 if (process.env.OPENAI_API_KEY) {
-  const openaiConfig = new Configuration({ apiKey: process.env.OPENAI_API_KEY });
-  openai = new OpenAIApi(openaiConfig);
+  openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY
+  });
 }
 
 // In-memory "database" for users (for demo purposes)
